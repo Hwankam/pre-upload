@@ -1,0 +1,35 @@
+#줄리아 과제하다가 안풀린 것
+
+#0보다 큰 수 중에서 가장 작은 수는 무엇일까?
+"""
+=>> unique()  (파이썬에서는 set()) 
+=>> sort()
+=>> 찾고 싶은 index
+"""
+
+
+using LinearAlgebra
+
+
+function LUdecomp!(A::Matrix{T}; tol::T=convert(T, 1e-8)) where T <: AbstractFloat  # convert T 는 1e-8을 T 형식으로 변환시키는 것.
+    get = LinearAlgebra.LAPACK.getrf!(A)
+    mat = get[1]
+    n , p = size(A)
+    c = zeros(n)
+    for i= 1:n
+         if (abs(mat[i,i]) < tol)
+            c[i] = i
+         else 
+            c[i] = 0
+         end
+    end
+    
+    if (sum(c) == 0)
+        singular = 0
+    else 
+        singular = sort(unique(c))[2]
+    end
+    
+    return get[2], convert(Int, singular)
+end
+

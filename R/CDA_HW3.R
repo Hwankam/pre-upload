@@ -15,9 +15,10 @@ fisher.test(table, alternative = "two.sided")
 fisher.test(table, alternative = "greater")
 fisher.test(table, alternative = "less")
 
-# what is null hypothesis? Null : we cannot detect the difference(fisher tea example) , there are independenceue ive hypothesis: true odds ratio is not equal to 1
+# what is null hypothesis? Null : we cannot detect the difference(fisher tea example) , there are independence
+# alternative hypothesis: true odds ratio is not equal to 1
 
-p0 <- choose(18,0) * choose(23,5) / choose(41,5)
+choose(18,0) * choose(23,5) / choose(41,5)
 
 p1 <- choose(18,1) * choose(23,4) / choose(41,5)
 
@@ -30,32 +31,57 @@ p4 <- choose(18,4) * choose(23,1) / choose(41,5)
 p5 <- choose(18,5) * choose(23,0) / choose(41,5)
 
 
-p3 + p41-p2 # "two.sided" p-value.
- + p5 #: ?Ì°?  "" ??????À»1 + p2 + we have to include p3 p3 # ?Ì°? "less" ???? ?? ??"???Ø¾?!
-. we have to include p3??abe) # # how to treat tablemargin Ç¥???Ï±?
-prop.tabl? ??Å¸????
+1-p2 # "two.sided" p-value.
 
-barplote=T, ylim=c(0,30))
+p3 + p4 + p5 #:"greater" p-value.
+
+p0 + p1 + p2 + p3 #  "less"  p-value.
+
+table
+addmarigins(table)
+prop.table(table) 
+
+barplot(table, legend=T, beside=T, ylim=c(0,30))
 
 chisq.test(table)
-# ?? Chi-squ # beside is put the bar side by sideared approximation maywhye incorrect ???? ?????? ?ß´? ???Ï±??
-# chisr.test?? ?Ï´? $expected    the expected cell is too smallest(table)$expected
+# Chi-squared approximation may be incorrect 
+# chisq.test(table)$expected show expected cell, but some cell is too low under 5
+
+chisq.test(table)$observed
+chisq.test(table)$expected
 t.orig <-chisq.test(table)$statistic
 
-# ????????Á¤?? ???Ï¼? ??Á¤Àº ???? ???? independent test and homogeneity test use same chi square statistic.
-# only probelm setting is different : independent test = X and Y is random // homogeneity test = X is fixed and Y is randomc(18permuatation test in contingency table(homegeneity test) controlled <- c("Cancer Controlled", "Cancer Not Controlled")
+# what is difference between independence test and homogeniety test
+# Independence test : X and Y is randoem, Homegeniety test : X is fixed and Y is random
+
+#permuation test in contingency table (homogeniety test)
+perm <- c()
+for (i in 0:5) {
+  How_to <- c("Surgery","Radiation Theapy")
+  Controlled <- c("Cancer Controlled", "Cancer Not Controlled")
   data <- c(18+i,18-i,5-i,0+i)
   dd <- cbind(expand.grid(How_to=How_to,Controlled=Controlled ),data)
   table <- assign(paste0("table",i),xtabs(data~How_to+Controlled, data = dd))
   perm[i] <- chisq.test(table)$statistic
   }
 
-#paste ?? ???Ú¿?À» ???Ì´Âµ? paste0 ?? ????À» ???Ì¿? ???????? ?Ê°? ???Î´?.
 
-p????Àº ?? ?????? ?????? ????
+permutation <- sample(perm, 500, replace=T)
+mean(permutation>t.orig)
+
+
+
+
+
+#4
+
+#typical permuatation test
 
 sample1 <- rnorm(10, mean = 0 , sd = 1)
-sample2 <-permuation test (typical) <- c(sample1, sample2)
+sample2 <- rnorm(10, mean = 0 , sd = 1)
+
+
+data <- c(sample1, sample2)
 index <- c(rep("a",10),rep("b",10))
 t.origin <- t.test(data ~ index, var.equal=T)$statistic
 

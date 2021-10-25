@@ -35,3 +35,11 @@ Table$variable1[variable2 == condition]
 #8 plot together
 par(new=T)
 plot(x=x , y=y, ann=F, axes=F )
+
+
+#9 set data table
+A <- c("old", "new")
+B <- c("good","bad")
+counts <- c(10,13,12,20)
+x.tabs <- cbind(expand.grid(A=A, B=B),counts)
+xtabs(counts ~ A + B, data=x.tabs)

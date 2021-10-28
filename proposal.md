@@ -1,4 +1,4 @@
-```
+
 # A randomized exchange algorithm for Computing Optimal Approximate Designs of Experiments.
 
 ### 1. Team Info
@@ -37,4 +37,3 @@
 
 ### 5. Reference
 - [1] *Radoslav Harman, Lenka Filová & Peter Richtárik (2020) A Randomized Exchange Algorithm for Computing Optimal Approximate Designs of Experiments, Journal of the American Statistical Association, 115:529, 348-361, DOI: [10.1080/01621459.2018.1546588](https://doi.org/10.1080/01621459.2018.1546588)*
-```

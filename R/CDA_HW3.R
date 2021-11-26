@@ -18,7 +18,7 @@ fisher.test(table, alternative = "less")
 # what is null hypothesis? Null : we cannot detect the difference(fisher tea example) , there are independence
 # alternative hypothesis: true odds ratio is not equal to 1
 
-choose(18,0) * choose(23,5) / choose(41,5)
+p0 <- choose(18,0) * choose(23,5) / choose(41,5)
 
 p1 <- choose(18,1) * choose(23,4) / choose(41,5)
 
